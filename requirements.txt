@@ -1,0 +1,2 @@
+markdownify==0.10.0
+pandas==1.1.0
