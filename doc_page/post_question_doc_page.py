@@ -14,7 +14,7 @@ class PostQuestionDocPage(DocPage):
 
   @property
   def content(self):
-    return convert_html_to_md(self.answer_body)
+    return '## Context\n\n' + convert_html_to_md(self.question_body) + '\n\n---\n\n' + convert_html_to_md(self.answer_body)
 
   @property
   def header_attrs(self):
