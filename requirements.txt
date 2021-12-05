@@ -1,4 +1,8 @@
+markdown==3.3.6
 markdownify==0.10.0
 pandas==1.1.0
 PyYAML==6.0.0
 scikit-learn==1.0.1
+nltk==3.6.5
+imbalanced-learn==0.8.1
+joblib==1.1.0
