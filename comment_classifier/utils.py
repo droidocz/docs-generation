@@ -53,3 +53,30 @@ def get_sentences_from_comment(comment: str):
 def preprocess_comment(comment: str):
   sentences = get_sentences_from_comment(comment)
   return [preprocess_sentence(sentence) for sentence in sentences]
+
+def escape_html_tags(comment: str):
+  codeblocks = [(m.start(0), m.end(0)) for m in re.finditer(r'```[\s\S]+?```', comment)]
+  multiline_codeblocks = [(m.start(0), m.end(0)) for m in re.finditer(r'`.+?`', comment)]
+  all_codeblocks = [*codeblocks, *multiline_codeblocks]
+
+  updated_comment = ''
+  for index, val in enumerate(comment):
+    is_within_codeblock = False
+    for (start, end) in all_codeblocks:
+      if index in range(start, end):
+        updated_comment += val
+        is_within_codeblock = True
+        break
+
+    if is_within_codeblock:
+      continue
+
+    replace_with = {
+      '>': '&gt;',
+      '<': '&lt;'
+    }
+
+    updated_comment += replace_with.get(val, val)
+
+  return updated_comment
+

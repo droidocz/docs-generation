@@ -1,11 +1,9 @@
 from .doc_page import DocPage
-from comment_classifier.utils import get_sentences_from_comment, preprocess_sentence, remove_user_calls
+from comment_classifier.utils import escape_html_tags, get_sentences_from_comment, preprocess_sentence, remove_user_calls
 from utils import convert_html_to_md
 import joblib
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
-import markdown
-import markdownify
 
 import nltk
 nltk.download('vader_lexicon')
@@ -37,7 +35,7 @@ class PostQuestionDocPage(DocPage):
       features = ['TextScore', 'Sentiment', 'CommentTextLen']
       predicted_data = comment_classifier.predict(data[features])
 
-      joined_useful_sentences = markdownify.markdownify(markdown.markdown(' '.join(data[predicted_data == 1]['SentenceText'])))
+      joined_useful_sentences = escape_html_tags(' '.join(data[predicted_data == 1]['SentenceText']))
 
       if joined_useful_sentences:
         content += f"- {joined_useful_sentences}\n"
