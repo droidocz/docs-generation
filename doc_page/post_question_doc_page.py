@@ -40,7 +40,7 @@ class PostQuestionDocPage(DocPage):
       if joined_useful_sentences:
         content += f"- {joined_useful_sentences}\n"
 
-    return f"\n\n---\n\n## Notes:\n\n{content}" if content else ''
+    return f"\n\n---\n\n## Notes\n\n{content}" if content else ''
 
 
   @property

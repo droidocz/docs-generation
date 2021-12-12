@@ -56,7 +56,7 @@ def preprocess_comment(comment: str):
 
 def escape_html_tags(comment: str):
   codeblocks = [(m.start(0), m.end(0)) for m in re.finditer(r'```[\s\S]+?```', comment)]
-  multiline_codeblocks = [(m.start(0), m.end(0)) for m in re.finditer(r'`.+?`', comment)]
+  multiline_codeblocks = [(m.start(0), m.end(0)) for m in re.finditer(r'`[\s\S]+?`', comment)]
   all_codeblocks = [*codeblocks, *multiline_codeblocks]
 
   updated_comment = ''
