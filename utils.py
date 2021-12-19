@@ -9,7 +9,7 @@ def kebab_case_to_human(text: str):
   return ' '.join(word.capitalize() for word in text.split('-'))
 
 def human_to_kebab_case(text: str):
-  return '-'.join(word for word in text.split()).lower().replace('?', '').replace('/', '')
+  return '-'.join(word for word in text.split()).lower().replace('?', '').replace('/', '').replace('#', '')
 
 def create_folder(folder: str):
   return os.mkdir(folder)
